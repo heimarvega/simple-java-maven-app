@@ -3,7 +3,6 @@ pipeline {
     node {
       label 'linux'
     }
-
   }
   stages {
     stage('Build') {      
