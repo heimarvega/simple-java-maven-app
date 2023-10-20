@@ -7,29 +7,16 @@ pipeline {
   stages {
     stage('Build') {      
       steps {
-        sh '''mvn -B -DskipTests clean package'''
+        sh 'mvn -B -DskipTests clean package'
         archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
       }
     }
 
-    stage('Test') {
-      parallel {
-        stage('Test') {
+    stage('Test') {        
           steps {
             sh 'mvn test'
-          }
-        }
-
-        stage('Testing B') {
-          steps {
-            sh '''sleep 10
-echo done.'''
-          }
-        }
-
-      }
+          }              
     }
-
   }
   tools {
     maven 'mvn3'
