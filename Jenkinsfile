@@ -6,13 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('Build') {
-      environment {
-        BUZZ_NAME = 'Worker bee'
-      }
+    stage('Build') {      
       steps {
-        sh '''echo Hola soy $BUZZ_NAME
-mvn -B -DskipTests clean package'''
+        sh '''mvn -B -DskipTests clean package'''
         archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
       }
     }
